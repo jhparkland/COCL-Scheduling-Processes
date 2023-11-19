@@ -29,12 +29,12 @@ def schedule(jobs):
     # Line 10-18: Apply scheduling based on conditions / (t, l): t- t_l_list[0], l- t_l_list[1]
     for i in range(len(t_l_list) - 1): # i+1에 접근하기 때문에 -1 처리
       if t_l_list[i][1] == t_l_list[i+1][1] and t_l_list[i+1][0] != t_l_list[i][0] + 1: # 현재 location과 다음 location이 같고, 현재 time+1과 다음 time과 다를 때
-        suspend_resume() # 일시중지, 다시시작
+        suspend_resume(t_l_list[i]) # 일시중지, 다시시작
       elif t_l_list[i][1] != t_l_list[i+1][1] and t_l_list[i+1][0] == t_l_list[i][0] + 1: # 현재 location과 다음 location이 다르고, 현재 time+1과 다음 time과 같을 때
-        moving_between_clouds() # 클라우드로 옮기기
+        moving_between_clouds(t_l_list[i]) # 클라우드로 옮기기
       elif t_l_list[i][1] != t_l_list[i+1][1] and t_l_list[i+1][0] != t_l_list[i][0] + 1: # 현재 location과 다음 location이 다르고, 현재 time+1과 다음 time과 다를 때
-        suspend_resume() # 일시중지, 다시시작
-        moving_between_clouds() # 클라우드로 옮기기
+        suspend_resume(t_l_list[i]) # 일시중지, 다시시작
+        moving_between_clouds(t_l_list[i]) # 클라우드로 옮기기
 
 # 필요 함수 정의
 def all_possible_locations(job):
@@ -91,10 +91,10 @@ def time_location_list(n_job, target_time):
     
   return t_l_list
 
-def suspend_resume():
+def suspend_resume(t_l_list[i]):
   # 일시중지, 다시시작
   return 0
 
-def moving_between_clouds():
+def moving_between_clouds(t_l_list[i]):
   # 클라우드로 옮기기
   return 0
