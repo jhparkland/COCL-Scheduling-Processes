@@ -17,13 +17,8 @@ Net-zero equation = production energy(PE) - used energy(UE) =~ 0에 근접
 - Input 형식
   - time / location / CO_2 / ...  # ... 부분은 어떻게 생겨도 상관없고, time은 0열, location은 1열, CO_2는 2열만 지켜지면 됨
 - Output
-  - 정렬된 time_location 리스트에 따라 작업 배정
-
-- 뼈대 Code 제작 완료
-- 추가적으로 구현해야 할 점
-  - 에포크 수 정하는 기준이 필요함
-  - suspend_resume() 구현 필요
-  - moving_between_clouds() 구현 필요
+  - (t, l) 리스트, 해당 리스트의 원소마다 어떤 작업을 해야할 지에 대한 정보를 가진 리스트 반환
+  - t_l_list, SR_MBC_list
 
 ## 참여 신청 방법
 
