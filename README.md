@@ -14,11 +14,11 @@ Net-zero equation = production energy(PE) - used energy(UE) =~ 0에 근접
 만약 1시-2시의 강의가 = 100kw(PE) - 120kw(UE) = -20 이라면 20정도의 전력이 부족(이건 중앙 전력/계통의 전력을 사용함), 혹은 추가적인 설치가 필요
 
 ## 개발 사항
-- Input 형식
+- Input Data 형식 (jobs에 해당)
   - time / location / CO_2 / ...  # ... 부분은 어떻게 생겨도 상관없고, time은 0열, location은 1열, CO_2는 2열만 지켜지면 됨
-- Output
-  - (t, l) 리스트, 해당 리스트의 원소마다 어떤 작업을 해야할 지에 대한 정보를 가진 리스트 반환
-  - t_l_list, SR_MBC_list
+- Output Data 형식 (n_jobs에 해당)
+  - time / location / CO_2 / ... / SR_MBC # 마지막 열에 SR_MBC 여부를 표시하는 리스트 추가
+  - num_epochs만큼 반복하는 배열 반환
 
 ## 참여 신청 방법
 
