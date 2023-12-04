@@ -22,7 +22,7 @@ def schedule(jobs):
       SR_MBC_list = suspend_resume(SR_MBC_list) # 일시중지, 다시시작
     elif jobs[i][1] != jobs[i+1][1] and jobs[i][0] > 1.5: # 현재 강의 위치와 다음 강의 위치가 다르고, 현재 강의 시간이 1.5시간보다 많을 때
       SR_MBC_list = moving_between_clouds(SR_MBC_list) # 클라우드로 옮기기
-    elif jobs[i][1] == jobs[i+1][1] and jobs[i][0] > 1.51: # 현재 강의 위치와 다음 강의 위치가 같고, 현재 강의 시간이 1.5시간보다 많을 때
+    elif jobs[i][1] == jobs[i+1][1] and jobs[i][0] > 1.5: # 현재 강의 위치와 다음 강의 위치가 같고, 현재 강의 시간이 1.5시간보다 많을 때
       SR_MBC_list = sr_mbc(SR_MBC_list) # 일시중지, 클라우드로 옮기기, 다시시작
     else:
       SR_MBC_list.append(" ")
@@ -32,9 +32,7 @@ def schedule(jobs):
 
   np.insert(jobs, -1, SR_MBC_list, axis=1) # jobs의 마지막 열로 SR_MBC_list 추가
 
-  # 15주 수업 반복
-  n_jobs = n_jobs(jobs, num_epochs)
-return n_jobs
+  return jobs
 
 # 필요 함수 정의 #
 def all_possible_locations(jobs):
@@ -59,12 +57,3 @@ def sr_mbc(SR_MBC_list):
   # 일시중지, 클라우드로 옮기기, 다시시작
   SR_MBC_list.append("SR, MBC")
   return SR_MBC_list
-
-def n_jobs(jobs, num_epochs):
-  # 주어진 배열을 복사
-  c_jobs = np.copy(jobs)
-
-  # 복사한 배열을 n-1번 추가하여 쌓음
-  n_jobs = np.vstack([jobs] * (num_epochs-1) + [c_job])
-
-  return n_jobs
